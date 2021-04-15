@@ -2,13 +2,23 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Pressable} from 'react-native';
 
+var symbols = [["","",""],["","",""],["","",""]]
+
 export default function App() {
-  const [getTurn,setTurn] = useState(true);
+  
+  const [Turn,setTurn] = useState(true);
 
-  const pressed =()=>{
-    if(turn){
-
-    }
+  const Pressed = (a,b) =>{
+    if(symbols[a][b] == ""){
+      if(Turn){
+        symbols[a][b] = "X";
+        setTurn(false); 
+      }
+      else{
+        symbols[a][b] = "O";
+        setTurn(true);
+      } 
+    } 
   }
 
   return (
@@ -16,38 +26,38 @@ export default function App() {
       <Text style={styles.ptext}>Player 1 : X</Text>
       <Text style={styles.ptext}>Player 2 : O</Text>
       <View style={styles.rowss}> 
-        <Pressable style={styles.press} onPress={""}>
-          <Text style={styles.fortext}>1</Text>
+        <Pressable style={styles.press} onPress={() => {Pressed(0,0)}}>
+          <Text style={styles.fortext}>{symbols[0][0]}</Text>
         </Pressable>
-        <Pressable style={styles.press} onPress={""}>
-          <Text style={styles.fortext}>2</Text>
+        <Pressable style={styles.press} onPress={() => {Pressed(0,1)}}>
+          <Text style={styles.fortext}>{symbols[0][1]}</Text>
         </Pressable>
-        <Pressable style={styles.press} onPress={""}>
-          <Text style={styles.fortext}>3</Text>
-        </Pressable>
-      </View>
-      
-      <View style={styles.rowss}>
-        <Pressable style={styles.press} onPress={""}>
-          <Text style={styles.fortext}>4</Text>
-        </Pressable>
-        <Pressable style={styles.press} onPress={""}>
-          <Text style={styles.fortext}>5</Text>
-        </Pressable>
-        <Pressable style={styles.press} onPress={""}>
-          <Text style={styles.fortext}>6</Text>
+        <Pressable style={styles.press} onPress={() => {Pressed(0,2)}}>
+          <Text style={styles.fortext}>{symbols[0][2]}</Text>
         </Pressable>
       </View>
       
       <View style={styles.rowss}>
-        <Pressable style={styles.press} onPress={""}>
-          <Text style={{fontSize:"30px"}}>7</Text>
+        <Pressable style={styles.press} onPress={() => {Pressed(1,0)}}>
+          <Text style={styles.fortext}>{symbols[1][0]}</Text>
         </Pressable>
-        <Pressable style={styles.press} onPress={""}>
-          <Text style={styles.fortext}>8</Text>
+        <Pressable style={styles.press} onPress={() => {Pressed(1,1)}}>
+          <Text style={styles.fortext}>{symbols[1][1]}</Text>
         </Pressable>
-        <Pressable style={styles.press} onPress={""}>
-          <Text style={styles.fortext}>9</Text>
+        <Pressable style={styles.press} onPress={() => {Pressed(1,2)}}>
+          <Text style={styles.fortext}>{symbols[1][2]}</Text>
+        </Pressable>
+      </View>
+      
+      <View style={styles.rowss}>
+        <Pressable style={styles.press} onPress={() => {Pressed(2,0)}}>
+          <Text style={{fontSize:"30px"}}>{symbols[2][0]}</Text>
+        </Pressable>
+        <Pressable style={styles.press} onPress={() => {Pressed(2,1)}}>
+          <Text style={styles.fortext}>{symbols[2][1]}</Text>
+        </Pressable>
+        <Pressable style={styles.press} onPress={() => {Pressed(2,2)}}>
+          <Text style={styles.fortext}>{symbols[2][2]}</Text>
         </Pressable>
       </View>
       
@@ -58,7 +68,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:"400px",
+    marginTop:"300px",
     display:"flex",
     flexDirection:"column",
     backgroundColor: '#fff',
@@ -78,7 +88,7 @@ const styles = StyleSheet.create({
     height:"80px",
     
     backgroundColor:"firebrick",
-    border:"3px solid black",
+    border:"3px solid white",
   },
 
   fortext:{
